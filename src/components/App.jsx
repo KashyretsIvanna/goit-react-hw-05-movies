@@ -1,11 +1,11 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { lazy,Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import styled from 'styled-components';
-const Home=lazy(()=>import("./Home"))
-const Movie=lazy(()=>import("./Movies"))
-const MovieDetails=lazy(()=>import("./Movies/MovieDetails"))
-const Cast=lazy(()=>import("./Movies/MovieDetails/Cast"))
-const Rewievs=lazy(()=>import("./Movies/MovieDetails/Reviews"))
+const Home = lazy(() => import('./Home'));
+const Movie = lazy(() => import('./Movies'));
+const MovieDetails = lazy(() => import('./Movies/MovieDetails'));
+const Cast = lazy(() => import('./Movies/MovieDetails/Cast'));
+const Rewievs = lazy(() => import('./Movies/MovieDetails/Reviews'));
 
 const Navbar = styled.div`
   position: fixed;
@@ -44,17 +44,17 @@ export const App = () => {
         <Nav to="/goit-react-hw-05-movies/movies">Movies</Nav>
       </Navbar>
       <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path="/goit-react-hw-05-movies/" element={<Home />} />
-        <Route path="/goit-react-hw-05-movies/movies" element={<Movie />} />
-        <Route
-          path="/goit-react-hw-05-movies/movies/:movieId"
-          element={<MovieDetails />}
-        >
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Rewievs />} />
-        </Route>
-      </Routes>
+        <Routes>
+          <Route path="/goit-react-hw-05-movies/" element={<Home />} />
+          <Route path="/goit-react-hw-05-movies/movies" element={<Movie />} />
+          <Route
+            path="/goit-react-hw-05-movies/movies/:movieId"
+            element={<MovieDetails />}
+          >
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Rewievs />} />
+          </Route>
+        </Routes>
       </Suspense>
     </div>
   );

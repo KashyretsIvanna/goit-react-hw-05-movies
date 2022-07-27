@@ -19,15 +19,21 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <ul>
       {data.map(el => (
-        <div key={el.id}>
-          <img src={el.profile_path} alt="" />
-          <b>{el.name}</b>
-          <p>{el.character}</p>
-        </div>
+        <>
+          <img
+            src={`https://image.tmdb.org/t/p/w200${el.profile_path}`}
+            alt=""
+          />
+          <li key={el.id}>
+            <p>{el.name}</p>
+
+            <p>Character: {el.character}</p>
+          </li>
+        </>
       ))}
-    </div>
+    </ul>
   );
 };
 

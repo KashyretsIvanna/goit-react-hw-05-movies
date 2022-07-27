@@ -22,7 +22,7 @@ const MovieDetails = () => {
       )
       .then(res => {
         setData(res.data);
-        console.log(res.data.genres);
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   }, [movieId]);
@@ -35,7 +35,7 @@ const MovieDetails = () => {
           <div className={styles.flex}>
             <div>
               <img
-                src="https://imgholder.ru/323x300/9dbf16/xfff,atext=image.pagespeed.ic.GedgZjFo9t.png"
+                src={`https://image.tmdb.org/t/p/w200${data.poster_path}`}
                 alt=" "
               />
             </div>
@@ -56,13 +56,20 @@ const MovieDetails = () => {
           </div>
           <div className={styles.add}>
             <h3>Additional information</h3>
-            <NavLink state={{ from: backLinkHref }} to="cast">
-              Cast
-            </NavLink>
-            <br />
-            <NavLink state={{ from: backLinkHref }} to="reviews">
-              Reviews
-            </NavLink>
+            <ul>
+              <li>
+                <NavLink state={{ from: backLinkHref }} to="cast">
+                  Cast
+                </NavLink>
+                <br />
+              </li>
+              <li>
+                <NavLink state={{ from: backLinkHref }} to="reviews">
+                  Reviews
+                </NavLink>
+              </li>
+            </ul>
+
             <Outlet />
           </div>
         </Fragment>
