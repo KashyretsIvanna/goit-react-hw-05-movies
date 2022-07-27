@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const Home = () => {
   const [data, setData] = useState([]);
+  
 
   useEffect(() => {
     axios

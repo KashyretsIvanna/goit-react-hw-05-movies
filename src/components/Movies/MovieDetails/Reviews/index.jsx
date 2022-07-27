@@ -18,12 +18,16 @@ const Rewievs = () => {
   }, [movieId]);
   return (
     <div>
-      {ourData.map(el => (
-        <div key={el.id}>
-          <h3>Author: {el.author}</h3>
-          <p>{el.content}</p>
-        </div>
-      ))}
+      {ourData ? (
+        ourData.map(el => (
+          <div key={el.id}>
+            <h3>Author: {el.author}</h3>
+            <p>{el.content}</p>
+          </div>
+        ))
+      ) : (
+        <p>We do not have any reviews</p>
+      )}
     </div>
   );
 };

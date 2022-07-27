@@ -2,19 +2,32 @@ import styles from '../Movies/index.module.css';
 import { Fragment, useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-const Movie = () => {
+const Movie = ({ filter, onSetFilter }) => {
   const [value, setValue] = useState('');
   const [data, setData] = useState([]);
 
   const handleSetValue = value => {
     setValue(value);
-    console.log(value);
   };
+
+  useEffect(() => {
+    setValue('');
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=d33121ec8e4d8e2727fc1b2edf68984b&language=en-US&query=${filter}&page=1&include_adult=false`
+      )
+      .then(res => {
+        setData(res.data.results);
+      })
+      .catch(error => console.log(error));
+  }, [filter]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('get');
+    onSetFilter(value);
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=d33121ec8e4d8e2727fc1b2edf68984b&language=en-US&query=${value}&page=1&include_adult=false`
@@ -24,6 +37,7 @@ const Movie = () => {
         console.log(res.data.results);
       })
       .catch(error => console.log(error));
+    setValue('');
   };
 
   return (
@@ -58,6 +72,11 @@ const Movie = () => {
       </div>
     </div>
   );
+};
+
+Movie.propTypes = {
+  onSetFilter: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 export default Movie;

@@ -1,5 +1,5 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense ,useState} from 'react';
 import styled from 'styled-components';
 const Home = lazy(() => import('./Home'));
 const Movie = lazy(() => import('./Movies'));
@@ -29,6 +29,8 @@ const Nav = styled(NavLink)`
   }
 `;
 export const App = () => {
+  const [filter,setFilter]=useState("")
+
   return (
     <div
       style={{
@@ -46,7 +48,7 @@ export const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/goit-react-hw-05-movies/" element={<Home />} />
-          <Route path="/goit-react-hw-05-movies/movies" element={<Movie />} />
+          <Route path="/goit-react-hw-05-movies/movies" element={<Movie onSetFilter={setFilter} filter={filter} />} />
           <Route
             path="/goit-react-hw-05-movies/movies/:movieId"
             element={<MovieDetails />}
