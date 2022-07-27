@@ -1,0 +1,23 @@
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.add p,
+.flex p {
+  font-size: 20px;
+}
+
+.add h3,
+.flex h3 {
+  font-size: 30px;
+}
+.flex h1 {
+  font-size: 35px;
+}
+
+.add a,
+.flex a {
+  font-size: 20px;
+}
