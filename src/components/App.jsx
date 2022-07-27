@@ -31,7 +31,7 @@ export const App = () => {
   return (
     <div
       style={{
-        paddingTop:"100px",
+        paddingTop: '100px',
         fontSize: 40,
         color: '#010101',
         margin: '0px',
@@ -45,7 +45,10 @@ export const App = () => {
       <Routes>
         <Route path="/goit-react-hw-05-movies/" element={<Home />} />
         <Route path="/goit-react-hw-05-movies/movies" element={<Movie />} />
-        <Route path="/goit-react-hw-05-movies/movies/:movieId" element={<MovieDetails />}>
+        <Route
+          path="/goit-react-hw-05-movies/movies/:movieId"
+          element={<MovieDetails />}
+        >
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Rewievs />} />
         </Route>
