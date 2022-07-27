@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/953.0eabf5b6.chunk.css","mappings":"AAAA,mBAEE,aAAiB,CADjB,cAAe,CAOf,mBAAiB,CALjB,oBACF","sources":["components/Movies/index.module.css"],"sourcesContent":[".nav {\n  font-size: 20px;\n  color: blueviolet;\n  text-decoration: none;\n}\n\n.nav {\n  margin: 0 auto;\n  margin-top: 150px;\n}\n"],"names":[],"sourceRoot":""}
