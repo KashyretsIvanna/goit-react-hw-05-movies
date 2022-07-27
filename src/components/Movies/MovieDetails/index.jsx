@@ -13,7 +13,6 @@ const MovieDetails = () => {
   const [data, setData] = useState([]);
   const { movieId } = useParams('');
   const location = useLocation();
-  console.log(location.state);
 
   useEffect(() => {
     axios
@@ -22,7 +21,7 @@ const MovieDetails = () => {
       )
       .then(res => {
         setData(res.data);
-        console.log(res.data);
+        console.log(res.data.genres);
       })
       .catch(err => console.log(err));
   }, [movieId]);
@@ -45,16 +44,20 @@ const MovieDetails = () => {
           <h3>Genres</h3>
           <p>
             {data.genres.map(el => (
-              <div>{el.name} </div>
+              <div key={el.id}>{el.name} </div>
             ))}
           </p>
         </div>
       </div>
       <div className={styles.add}>
         <h3>Additional information</h3>
-        <NavLink to="cast">Cast</NavLink>
+        <NavLink state={{ from: location.state.from }} to="cast">
+          Cast
+        </NavLink>
         <br />
-        <NavLink to="reviews">Reviews</NavLink>
+        <NavLink state={{ from: location.state.from }} to="reviews">
+          Reviews
+        </NavLink>
         <Outlet />
       </div>
     </Fragment>
