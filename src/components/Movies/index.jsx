@@ -33,8 +33,8 @@ const Movie = ({ filter, onSetFilter }) => {
         setData(res.data.results);
       })
       .catch(error => console.log(error));
-    onSetFilter(value);
     setSearchParams({ query: value });
+    onSetFilter(value);
   };
 
   return (
