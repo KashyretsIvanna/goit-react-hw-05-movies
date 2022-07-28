@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const Home = () => {
   const [data, setData] = useState([]);
-  
 
   useEffect(() => {
     axios
@@ -13,7 +12,6 @@ const Home = () => {
       )
       .then(res => {
         setData(res.data.results);
-        console.log(res.data.results);
       })
       .catch(err => console.log(err));
   }, []);
@@ -22,10 +20,7 @@ const Home = () => {
     <div>
       {data.map(el => (
         <div key={el.id}>
-          <NavLink
-            to={`/goit-react-hw-05-movies/movies/${el.id}`}
-            state={{ from: '/goit-react-hw-05-movies/' }}
-          >
+          <NavLink to={`/movies/${el.id}`} state={{ from: '/' }}>
             {el.original_title}
           </NavLink>
         </div>

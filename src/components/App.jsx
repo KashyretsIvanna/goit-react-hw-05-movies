@@ -1,5 +1,5 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { lazy, Suspense ,useState} from 'react';
+import { lazy, Suspense, useState } from 'react';
 import styled from 'styled-components';
 const Home = lazy(() => import('./Home'));
 const Movie = lazy(() => import('./Movies'));
@@ -29,7 +29,7 @@ const Nav = styled(NavLink)`
   }
 `;
 export const App = () => {
-  const [filter,setFilter]=useState("")
+  const [filter, setFilter] = useState('');
 
   return (
     <div
@@ -42,20 +42,24 @@ export const App = () => {
       }}
     >
       <Navbar>
-        <Nav to="/goit-react-hw-05-movies/">Home</Nav>
-        <Nav to="/goit-react-hw-05-movies/movies">Movies</Nav>
+        <Nav to="/">Home</Nav>
+        <Nav to="/movies">Movies</Nav>
       </Navbar>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/goit-react-hw-05-movies/" element={<Home />} />
-          <Route path="/goit-react-hw-05-movies/movies" element={<Movie onSetFilter={setFilter} filter={filter} />} />
+          <Route path="/" element={<Home />} />
           <Route
-            path="/goit-react-hw-05-movies/movies/:movieId"
-            element={<MovieDetails />}
+            path="/movies"
+            element={<Movie onSetFilter={setFilter} filter={filter} />}
+          />
+          <Route
+            path={`/movies/:movieId`}
+            element={<MovieDetails filter={filter} />}
           >
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Rewievs />} />
           </Route>
+          {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </Suspense>
     </div>

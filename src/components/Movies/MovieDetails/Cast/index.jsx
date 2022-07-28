@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const Cast = () => {
-  const { movieId } = useParams('');
+  const { movieId } = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Cast = () => {
   return (
     <ul>
       {data.map(el => (
-        <>
+        <Fragment key={el.id}>
           <img
             src={`https://image.tmdb.org/t/p/w200${el.profile_path}`}
             alt=""
@@ -31,7 +31,7 @@ const Cast = () => {
 
             <p>Character: {el.character}</p>
           </li>
-        </>
+        </Fragment>
       ))}
     </ul>
   );

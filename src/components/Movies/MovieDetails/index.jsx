@@ -6,14 +6,17 @@ import {
   Link,
   useLocation,
 } from 'react-router-dom';
-import { useState, Fragment, useEffect } from 'react';
+import { useState, Fragment, useEffect, Suspense } from 'react';
 import axios from 'axios';
 
 const MovieDetails = () => {
   const [data, setData] = useState([]);
   const { movieId } = useParams('');
   const location = useLocation();
-  const backLinkHref = location.state.from ?? '/goit-react-hw-05-movies';
+  const backLinkHref = location.state.from
+    ? `${location.state.from}?query=${location.state.query}`
+    : '/goit-react-hw-05-movies';
+  console.log(location.state);
 
   useEffect(() => {
     axios
@@ -22,7 +25,6 @@ const MovieDetails = () => {
       )
       .then(res => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch(err => console.log(err));
   }, [movieId]);
@@ -58,19 +60,30 @@ const MovieDetails = () => {
             <h3>Additional information</h3>
             <ul>
               <li>
-                <NavLink state={{ from: backLinkHref }} to="cast">
+                <NavLink
+                  state={{
+                    from: backLinkHref,
+                  }}
+                  to="cast"
+                >
                   Cast
                 </NavLink>
                 <br />
               </li>
               <li>
-                <NavLink state={{ from: backLinkHref }} to="reviews">
+                <NavLink
+                  state={{
+                    from: backLinkHref,
+                  }}
+                  to="reviews"
+                >
                   Reviews
                 </NavLink>
               </li>
             </ul>
-
-            <Outlet />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
           </div>
         </Fragment>
       )}
