@@ -14,7 +14,7 @@ const MovieDetails = () => {
   const { movieId } = useParams('');
   const location = useLocation();
   const backLinkHref = location.state.from
-    ? `${location.state.from}?query=${location.state.query}`
+    ? location.state.query?`${location.state.from}?query=${location.state.query}`:`${location.state.from}`
     : '/goit-react-hw-05-movies';
   console.log(location.state);
 
