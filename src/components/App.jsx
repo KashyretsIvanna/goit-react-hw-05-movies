@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink,Navigate } from 'react-router-dom';
 import { lazy, Suspense, useState } from 'react';
 import styled from 'styled-components';
 const Home = lazy(() => import('./Home'));
@@ -59,7 +59,7 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Rewievs />} />
           </Route>
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />}  />
         </Routes>
       </Suspense>
     </div>
